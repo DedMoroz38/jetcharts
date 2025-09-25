@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #23252a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #2a2d33;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #23252a transparent;
+}
+
+.container {
+    max-width: 1500px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0 1%;
+  
+    @media (max-width: 850px) {
+      padding: 0 2%;
+      max-width: 688px;
+    }
+  
+    @media (max-width: 480px) {
+      max-width: 400px;
+      padding: 0 15px;
+    }
+  }
+
+  .recharts-tooltip-cursor{
+    display: none;
+  }
