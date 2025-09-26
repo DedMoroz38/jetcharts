@@ -1,73 +1,28 @@
-# React + TypeScript + Vite
+# JetCharts - Mini Visualization Tool
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based trivia questions visualization dashboard that fetches data from the Open Trivia Database API and displays interactive charts showing question distributions by category, type, and difficulty.
 
-Currently, two official plugins are available:
+## 🚀 Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Start development server**
+   ```bash
+   npm run dev
+   ```
 
-## React Compiler
+**Open in browser**
+   Navigate to `https://dedmoroz38.github.io/jetcharts/` to view the application.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📊 What it does
 
-## Expanding the ESLint configuration
+This mini visualization tool provides an interactive dashboard for exploring trivia questions data:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Features
+- **Real-time Data Fetching**: Retrieves 50 trivia questions from [Open Trivia Database API](https://opentdb.com/)
+- **Interactive Charts**: 
+  - Pie charts showing question distribution by category and difficulty
+  - Bar charts for question types (multiple choice vs true/false)
+- **Category Filtering**: Filter data by specific trivia categories
+- **Responsive Design**: Modern, clean UI built with Tailwind CSS
+- **Error Handling**: Graceful error handling with retry functionality
+- **Loading States**: Smooth loading animations and skeleton screens
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
