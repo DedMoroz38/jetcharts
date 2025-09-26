@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import type { Question } from '../types';
+import type { Data, ErrorT, Question } from '../types';
 import { fetchTriviaQuestions } from '../services/triviaApi';
 
 export const useTriviaData = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<{ message: string; status?: number } | null>(null);
+  const [error, setError] = useState<ErrorT>(null);
 
   const getData = async () => {
     try {
@@ -35,7 +35,6 @@ export const useTriviaData = () => {
   };
 
   useEffect(() => {
-    console.log('called');
     getData();
   }, []);
 
@@ -43,7 +42,7 @@ export const useTriviaData = () => {
     ? questions.filter((q) => q.category === selectedCategory)
     : questions;
 
-  const categoryDistribution = filteredQuestions.reduce((acc, q) => {
+  const categoryDistribution: Data = filteredQuestions.reduce((acc, q) => {
     const category = q.category;
     const existingCategory = acc.find((item) => item.name === category);
     if (existingCategory) {
@@ -52,9 +51,9 @@ export const useTriviaData = () => {
       acc.push({ name: category, value: 1 });
     }
     return acc;
-  }, [] as { name: string; value: number }[]);
+  }, [] as Data);
 
-  const difficultyDistribution = filteredQuestions.reduce((acc, q) => {
+  const difficultyDistribution: Data = filteredQuestions.reduce((acc, q) => {
     const difficulty = q.difficulty;
     const existingDifficulty = acc.find((item) => item.name === difficulty);
     if (existingDifficulty) {
@@ -63,9 +62,9 @@ export const useTriviaData = () => {
       acc.push({ name: difficulty, value: 1 });
     }
     return acc;
-  }, [] as { name: string; value: number }[]);
+  }, [] as Data);
 
-  const typeDistribution = filteredQuestions.reduce((acc, q) => {
+  const typeDistribution: Data = filteredQuestions.reduce((acc, q) => {
     const type = q.type === 'multiple' ? 'Multiple Choice' : 
                  q.type === 'boolean' ? 'True/False' : 
                  q.type;
@@ -76,7 +75,7 @@ export const useTriviaData = () => {
       acc.push({ name: type, value: 1 });
     }
     return acc;
-  }, [] as { name: string; value: number }[]);
+  }, [] as Data);
 
   const categories = [...new Set(questions.map((q) => q.category))];
 

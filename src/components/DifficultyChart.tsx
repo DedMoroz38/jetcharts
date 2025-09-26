@@ -1,7 +1,8 @@
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
+import type { Data } from '../types';
 
-interface DifficultyChartProps {
-  data: { name: string; value: number }[];
+type DifficultyChartProps = {
+  data: Data;
 }
 
 const COLORS = ['#00C49F', '#FFBB28', '#FF8042'];
@@ -25,7 +26,7 @@ const DifficultyChart = ({ data }: DifficultyChartProps) => {
         paddingAngle={2}
       >
         {data.map((_, index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          <Cell key={index} fill={COLORS[index % COLORS.length]} />
         ))}
       </Pie>
       <text

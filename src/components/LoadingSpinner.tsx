@@ -1,4 +1,4 @@
-interface LoadingSpinnerProps {
+type LoadingSpinnerProps = {
   size?: 'sm' | 'md' | 'lg';
 }
 

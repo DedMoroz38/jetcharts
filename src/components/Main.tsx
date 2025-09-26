@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useError } from "../hooks/useError";
 import { useTriviaData } from "../hooks/useTriviaData";
-import CategoryChart from "./CategoryChart";
+import type { Data } from "../types";
 import CategoryFilter from "./CategoryFilter";
 import CategoryFilterSkeleton from "./CategoryFilterSkeleton";
-import LoadingSpinner from "./LoadingSpinner";
+import CategoryChart from "./chart/CategoryChart";
 import ErrorPopup from "./ErrorPopup";
+import LoadingSpinner from "./LoadingSpinner";
 
 export const Main = () => {
     const {
@@ -18,14 +19,8 @@ export const Main = () => {
         difficultyDistribution,
         retryFetch,
     } = useTriviaData();
+    const { showErrorPopup, setShowErrorPopup } = useError(error);
     
-    const [showErrorPopup, setShowErrorPopup] = useState(false);
-
-    useEffect(() => {
-        if (error) {
-            setShowErrorPopup(true);
-        }
-    }, [error]);
     return (
         <div className="pt-10">
             <h1 className="text-4xl font-bold text-center mb-6">Trivia Questions Distribution</h1>
@@ -73,7 +68,7 @@ export const Main = () => {
     );
 };
 
-const ChartContainer = ({heading, distribution, loading}: {heading: string, distribution: { name: string; value: number }[], loading: boolean}) => {
+const ChartContainer = ({heading, distribution, loading}: {heading: string, distribution: Data, loading: boolean}) => {
     return (
         <div className='p-4 flex flex-col gap-4 items-center'>
             <h2 className="text-xl font-semibold mb-2">{heading}</h2>

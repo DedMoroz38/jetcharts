@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
+import type { ErrorT } from '../types';
 
-interface ErrorPopupProps {
-  error: { message: string; status?: number } | null;
+type ErrorPopupProps = {
+  error: ErrorT;
   onRetry: () => void;
   onClose: () => void;
 }

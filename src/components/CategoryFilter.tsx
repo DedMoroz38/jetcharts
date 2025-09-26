@@ -1,4 +1,6 @@
-interface CategoryFilterProps {
+import { decodeName } from "../halpers/decodeName";
+
+type CategoryFilterProps = {
   categories: string[];
   selectedCategory: string | null;
   setSelectedCategory: (category: string | null) => void;
@@ -26,7 +28,7 @@ const CategoryFilter = ({ categories, selectedCategory, setSelectedCategory }: C
                selectedCategory === category ? 'border-[#6f5ff8]' : 'border-transparent'
              }`}
           >
-            {category}
+            {decodeName(category)}
           </div>
         ))}
       </div>
